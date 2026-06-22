@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
@@ -13,14 +12,12 @@ pipeline {
                 bat 'npm install'
             }
         }
-
         stage('Test') {
             steps {
                 // bat 'npm test'
                 bat 'set CI=true && npm test'
             }
         }
-
         stage('Start') {
             when {
                 branch 'main'
@@ -30,12 +27,10 @@ pipeline {
             }
         }
     }
-
     post {
         success {
             echo 'Pipeline 성공적으로 완료!'
         }
-
         failure {
             echo 'Pipeline 실패!'
         }
